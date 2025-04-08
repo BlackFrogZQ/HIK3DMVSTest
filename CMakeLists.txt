@@ -1,5 +1,5 @@
 ﻿cmake_minimum_required(VERSION 3.27.0)
-set(projectName flangeMeasureTest CACHE STRING "项目名" FORCE)
+set(projectName HIK3DMVSTest CACHE STRING "项目名" FORCE)
 set(projectVersion 0.1.0 CACHE STRING "版本号" FORCE)
 project(${projectName} VERSION ${projectVersion})
 
