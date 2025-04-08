@@ -1,5 +1,7 @@
 .vscode/*
 build/*
 log/*
+lib/HIK3DMVS/*
 lib/HMHaShu/*
+lib/VisionMasterSDK/*
 UDM.bin
