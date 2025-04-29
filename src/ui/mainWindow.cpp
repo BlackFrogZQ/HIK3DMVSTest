@@ -26,9 +26,8 @@ CMainWindow::CMainWindow(QWidget *parent) : QWidget(parent)
     m_pImageLabel = new QLabel;
     m_pImageLabel->setAttribute(Qt::WA_NativeWindow, true);
     m_pImageLabel->windowHandle()->create();
-    m_pCHIK3DMVS = new CHIK3DMVS(m_pImageLabel->winId());
 
-    m_pVmSol = CreateSolutionInstance();
+    m_pCHIK3DMVS = new CHIK3DMVS(m_pImageLabel->winId());
 
     init();
 
@@ -75,6 +74,7 @@ void CMainWindow::init()
     pCameraLayout->setSpacing(2);
     pCameraWidget->setLayout(pCameraLayout);
 
+    m_pVmSol = CreateSolutionInstance();
     QString selectedCLSID = "{0611E76E-3E97-42C7-8D2D-A8A42E928A7A}";
     activex = new QAxWidget(selectedCLSID, this);
     activex->dynamicCall("GetObjectPointer()");
