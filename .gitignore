@@ -2,3 +2,6 @@
 build/*
 HIK3DMVSTest_Log/*
 Mv3dLpLog/*
+*.jpg
+*.png
+*.bmp

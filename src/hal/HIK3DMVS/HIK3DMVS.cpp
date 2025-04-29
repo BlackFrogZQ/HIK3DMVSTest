@@ -218,6 +218,11 @@ void CHIK3DMVS::stopGrabImage()
 
 void CHIK3DMVS::displayImage(MV3D_LP_IMAGE_DATA* p_imageData)
 {
+	if ((NULL == p_imageData) || (NULL == m_hWndDisplay))
+	{
+		return;
+	}
+
     int nRet = MV3D_LP_OK;
     void* hWnd = reinterpret_cast<void*>(m_hWndDisplay);
     nRet = MV3D_LP_DisplayImage(p_imageData, hWnd, DisplayType_Auto, 0, 0);
@@ -271,6 +276,7 @@ int CHIK3DMVS::saveImage(Mv3dLpFileType p_enFileType)
         myInfo << cnStr("保存图片失败，错误代码: %1").arg(nRet);
         return nRet;
     }
+    return MV3D_LP_OK;
 }
 
 void CHIK3DMVS::saveImageTiff()
@@ -311,5 +317,17 @@ void CHIK3DMVS::saveImageJPG()
 
 void CHIK3DMVS::saveImageRAW()
 {
+    QString filename = QDateTime::currentDateTime().toString("yyyyMMddhhmmss") + ".raw";
+    QFile file(filename);
+    if (!file.open(QIODevice::WriteOnly))
+    {
+        myInfo << "无法打开文件保存图像:" << filename;
+        return;
+    }
 
+    m_mutex.lock();
+    file.write(reinterpret_cast<const char*>(m_pcDataBuf), m_stImageInfo.nDataLen);
+    m_mutex.unlock();
+
+    file.close();
 }
